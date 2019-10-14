@@ -1,7 +1,7 @@
 #include <iostream>
 #include <iomanip>
 using namespace std;
-int wahlomat() {
+int wahlomatgit () {
     // Variablendefinition + Variableninitialisierung
     unsigned int i_kandidat_1 = 0;
     unsigned int i_kandidat_2 = 0;
