@@ -1,13 +1,31 @@
 #include <iostream>
-
+#include <iomanip>
 using namespace std;
-
-int main() {
-    unsigned int i_kandidat_1 = 77;
-    unsigned int i_kandidat_2 = 95;
-    float f_anteil_kandidat_1 = ((float) i_kandidat_1 * 100) / ((float)i_kandidat_1 + (float)i_kandidat_2);
-    float f_anteil_kandidat_2 = ((float) i_kandidat_2 * 100) / ((float)i_kandidat_1 + (float)i_kandidat_2);
-    cout << "Kandidat 1: " << f_anteil_kandidat_1 << endl;
-    cout << "Kandidat 2: " << f_anteil_kandidat_2 << endl;
+int wahlomat() {
+    // Variablendefinition + Variableninitialisierung
+    unsigned int i_kandidat_1 = 0;
+    unsigned int i_kandidat_2 = 0;
+    unsigned int i_stimmanzahl = 0;
+    float f_anteil_kandidat_1 = 0;
+    float f_anteil_kandidat_2 = 0;
+    // Eingabe
+    cout << "Wie viele Stimmen hat Kandidat 1 erhalten?" << endl;
+    cin >> i_kandidat_1;
+    cout << "Wie viele Stimmen hat Kandidat 2 erhalten?" << endl;
+    cin >> i_kandidat_2;
+    // Verarbeitung
+    i_stimmanzahl = i_kandidat_1 + i_kandidat_2;
+    f_anteil_kandidat_1= ( i_kandidat_1 *100.0f / i_stimmanzahl);
+    f_anteil_kandidat_2=( i_kandidat_2  *100.0f / i_stimmanzahl);
+    // Ausgabe
+    cout.precision(2);
+    cout << fixed;
+    cout << "╔═════════════════════════════════════╗" << endl;
+    cout << "║              Ergebnisse             ║"<< endl;
+    cout << "║ Stimmanteil für Kandidat 1: " << setw(6) << f_anteil_kandidat_1 << "% ║"<< endl;
+    cout << "║ Stimmanteil für Kandidat 2: " << setw(6) << f_anteil_kandidat_2 << "% ║" << endl;
+    cout << "╚═════════════════════════════════════╝" << endl;
+    // Programmende
     getchar();
+    return 0;
 }
