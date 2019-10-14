@@ -85,7 +85,6 @@ if (rechnungsart == 1)
     }
     // Ausgabe
     cout << antwort << endl;
-    // Programmende
     getchar();
     return 0;
 }
