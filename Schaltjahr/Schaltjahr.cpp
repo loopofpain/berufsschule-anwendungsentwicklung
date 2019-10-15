@@ -15,5 +15,6 @@ int main(){
         cout << "KEIN Schaltjahr" << endl;
     }
     getchar();
+    // getchar();
     return 0;
 }
