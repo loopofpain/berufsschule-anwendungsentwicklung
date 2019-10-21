@@ -2,7 +2,7 @@
 
 using namespace std;
 
-int main() {
+int vorgaengernachfolger() {
     // Variablen
     unsigned short int eingegebeneZahl = 0;
     //Eingabe

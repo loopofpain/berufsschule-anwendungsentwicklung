@@ -9,12 +9,12 @@ int main(){
     cout << "Jahreszahl?" << endl;
     cin >> jahreszahl;
     // Ausgabe
-    if(jahreszahl%4==0 || jahreszahl%400==0){
+    if((jahreszahl%4==0  && jahreszahl%100!=0)|| jahreszahl%400==0){
         cout << "Schaltjahr" << endl;
     }else {
         cout << "KEIN Schaltjahr" << endl;
     }
-    getchar();
+    // getchar();
     // getchar();
     return 0;
 }

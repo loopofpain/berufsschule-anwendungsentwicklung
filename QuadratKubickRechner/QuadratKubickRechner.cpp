@@ -2,7 +2,7 @@
 #include <math.h>
 using namespace std;
 
-int main()
+int quadratkubickrechner()
 {
     // Variablendefinition + Variableninitialisierung
     double ergebnis = 0;
