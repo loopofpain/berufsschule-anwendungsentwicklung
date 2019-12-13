@@ -37,7 +37,6 @@ int main() {
     }else {
         cout << "Genau auf 0.";
     }
-    // getchar();
-    // getchar();
+    getchar();
     return 0;
 }
