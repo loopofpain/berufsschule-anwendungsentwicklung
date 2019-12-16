@@ -36,6 +36,7 @@ int main() {
         cout << "4 - Nasser Asphalt " << endl;
         cout << "Bitte geben Sie das Verhältnis an: ";
         cin >> verhaeltnis;
+        
         switch (verhaeltnis)
         {
         case 1:
