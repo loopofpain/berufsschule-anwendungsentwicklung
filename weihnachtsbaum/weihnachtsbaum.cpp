@@ -65,19 +65,18 @@ int main()
             std::cout << std::endl;
             if (hoehe >= 5 && hoehe <= 40)
             {
-                for (int baumhoehe = 1, baumstufe=0, leerzeichenebene = hoehe; baumhoehe <= hoehe; baumhoehe++, leerzeichenebene--, baumstufe++)
+                for (int baumhoehe = 1, baumstufe = 0, leerzeichenebene = hoehe; baumhoehe <= hoehe; baumhoehe++, leerzeichenebene--, baumstufe++)
                 {
                     for (int leerzeichen = leerzeichenebene; leerzeichen >= 0; leerzeichen--)
                     {
                         std::cout << ' ';
                     }
-                    for (int anzahlZeichen = 1+(baumstufe*2); anzahlZeichen >0; anzahlZeichen--)
+                    for (int anzahlZeichen = 1 + (baumstufe * 2); anzahlZeichen > 0; anzahlZeichen--)
                     {
                         std::cout << 'x';
                     }
                     std::cout << std::endl;
                 }
-
             }
             else
             {
@@ -87,7 +86,43 @@ int main()
             break;
 
         case 4:
-
+            std::cout << "-- Variante 4 --" << std::endl;
+            std::cout << "Höhe des Baumes eingeben <5-40>:";
+            std::cin >> hoehe;
+            std::cout << std::endl;
+            if (hoehe >= 5 && hoehe <= 40)
+            {
+                for (int baumhoehe = 1, baumstufe = 0, leerzeichenebene = hoehe; baumhoehe <= hoehe; baumhoehe++, leerzeichenebene--, baumstufe++)
+                {
+                    for (int leerzeichen = leerzeichenebene; leerzeichen >= 0; leerzeichen--)
+                    {
+                        std::cout << ' ';
+                    }
+                    for (int anzahlZeichen = 1 + (baumstufe * 2); anzahlZeichen > 0; anzahlZeichen--)
+                    {
+                        std::cout << 'x';
+                    }
+                    if(hoehe!=0){
+                        std::cout << std::endl;
+                    }
+                    
+                }
+                for (int leerzeichen = hoehe; leerzeichen >= 0; leerzeichen--)
+                    {
+                        std::cout << ' ';
+                }
+                std::cout << 'H' << std::endl;
+                                for (int leerzeichen = hoehe; leerzeichen >= 0; leerzeichen--)
+                    {
+                        std::cout << ' ';
+                }
+                std::cout << 'H' << std::endl << std::endl;
+            }
+            else
+            {
+                std::cout << "Ungültige eingabe";
+            }
+            std::cout << std::endl;
             break;
 
         default:
