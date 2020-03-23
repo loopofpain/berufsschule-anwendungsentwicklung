@@ -1,0 +1,2 @@
+C:\github-projects\berufsschule-anwendungsentwicklung\10\Windows\Schach\Debug\Schach.exe
+C:\github-projects\berufsschule-anwendungsentwicklung\10\Windows\Schach\Debug\Schach.pdb
