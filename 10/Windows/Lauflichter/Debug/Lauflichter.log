@@ -1,3 +1,3 @@
 ﻿  Quelle.cpp
-C:\github-projects\berufsschule-anwendungsentwicklung\10\Windows\Lauflichter\Quelle.cpp(5,13): warning C4326: Der Rückgabetyp von "main" sollte "int" und nicht "void" sein
+C:\github-projects\berufsschule-anwendungsentwicklung\10\Windows\Lauflichter\Quelle.cpp(18,13): warning C4326: Der Rückgabetyp von "main" sollte "int" und nicht "void" sein
   Lauflichter.vcxproj -> C:\github-projects\berufsschule-anwendungsentwicklung\10\Windows\Lauflichter\Debug\Lauflichter.exe
