@@ -5,6 +5,9 @@
 #include <iostream>
 #include <windows.h> //Für farbige Darstellung benötigt
 #include <time.h>
+#include "konsolenfarben.h";
+#include "suche.h";
+#include "zeitmanagment.h"
 
 #define NORMAL FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY 
 #define ROT FOREGROUND_RED | FOREGROUND_INTENSITY 
@@ -14,17 +17,14 @@ using namespace std;
 
 //Prototypen
 void zeichneParkhaus(void);
-int suchefreieEtage(void);
-int suchefreienParkplatz(int);
 void einausfahrt(bool);
 void schaltePfeile(int, int);
 bool EingabepruefenEtage(int iEtagennr);
 bool EingabepruefenParkbox(int iParkplatznr);
-void farbe(WORD color);
-void freiesParken(int entage,int parkplatz, int freieZeitInSekunden);
+
 
 // Globale Datendefinition
-bool ab_parkhaus[3][10]
+static bool ab_parkhaus[3][10]
 = { {1,1,1,0,1,1,1,1,1,1},
 {1,1,1,1,1,1,1,1,1,1},
 {1,1,0,1,1,1,1,1,1,1} };
@@ -74,32 +74,6 @@ int main(int argc, char* argv[])
 //---------------------------------------------------------------------------
 // Funktionsdefinitionen
 
-//Funktion zum Setzen der Ausgabefarben
-void farbe(WORD color)
-{
-	SetConsoleTextAttribute(::GetStdHandle(STD_OUTPUT_HANDLE), color);
-}
-
-void freiesParken(int etage, int parkplatz, int freieZeitInSekunden) {
-	static int al_ankunft[3][10] = { {0},{0},{0} };
-	time_t aktuelleZeit = time(NULL);
-
-	if (ab_parkhaus[etage][parkplatz]==0) {
-		al_ankunft[etage][parkplatz] = aktuelleZeit;
-	}
-	else {
-		if ((aktuelleZeit- al_ankunft[etage][parkplatz]) > freieZeitInSekunden) {
-			long zuBezahlendeZeit = ((aktuelleZeit - freieZeitInSekunden - al_ankunft[etage][parkplatz]) / 60) + 1;
-			farbe(ROT);
-			cout << "Zu zahlende Zeit: " << zuBezahlendeZeit << endl;
-			farbe(NORMAL);
-		}
-		else {
-			cout << "Freies Parken" << endl;
-		}
-		al_ankunft[etage][parkplatz] = 0;
-	}
-}
 
 void zeichneParkhaus(void)
 {
@@ -181,35 +155,6 @@ void zeichneParkhaus(void)
 	}
 	cout << "-------------------------------------------------" << endl;;
 }
-
-int suchefreieEtage(void)
-{
-	for (int i = 0;i < 3; i++) {
-		if (suchefreienParkplatz(i)>-1) {
-			return i;
-		}
-	}
-	return -1;
-}
-
-int suchefreienParkplatz(int iEtagenNr)
-{
-	//Hier muss der Funktionscode rein
-	//liefert den am weitesten von der Mitte ausgehenden freien Parkplatz (bei gleichweit
-	//entfernten Parkplätzen den mit der kleineren Zahl) für eine Etage zurück
-	//falls keiner frei, return -1
-
-	for (int i = 0; i <= 4;i++) {
-		if (!ab_parkhaus[iEtagenNr][9 - i]) {
-			return (9 - i);
-		}
-		if (!ab_parkhaus[iEtagenNr][i]) {
-			return i;
-		}
-	}
-	return -1;
-}
-
 
 
 void einausfahrt(bool bfrei)

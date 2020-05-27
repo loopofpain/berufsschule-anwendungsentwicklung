@@ -138,7 +138,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="konsolenfarben.cpp" />
     <ClCompile Include="parkhaus.cpp" />
+    <ClCompile Include="suche.cpp" />
+    <ClCompile Include="zeitmanagment.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="konsolenfarben.h" />
+    <ClInclude Include="suche.h" />
+    <ClInclude Include="zeitmanagment.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
