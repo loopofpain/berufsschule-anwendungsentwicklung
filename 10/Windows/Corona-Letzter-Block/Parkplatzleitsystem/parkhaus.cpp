@@ -4,7 +4,7 @@
 
 #include <iostream>
 #include <windows.h> //Für farbige Darstellung benötigt
-
+#include <time.h>
 
 #define NORMAL FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY 
 #define ROT FOREGROUND_RED | FOREGROUND_INTENSITY 
@@ -21,6 +21,7 @@ void schaltePfeile(int, int);
 bool EingabepruefenEtage(int iEtagennr);
 bool EingabepruefenParkbox(int iParkplatznr);
 void farbe(WORD color);
+void freiesParken(int entage,int parkplatz, int freieZeitInSekunden);
 
 // Globale Datendefinition
 bool ab_parkhaus[3][10]
@@ -50,7 +51,7 @@ int main(int argc, char* argv[])
 			schaltePfeile(ietage, iparkplatz);
 			zeichneParkhaus();
 			einausfahrt(1);
-			system("cls");
+			
 		}
 		else
 		{
@@ -60,8 +61,9 @@ int main(int argc, char* argv[])
 			schaltePfeile(-1, -1);
 			zeichneParkhaus();
 			einausfahrt(0);
-			system("cls");
+			
 		}
+		system("cls");
 	} while (1);
 
 	return 0;
@@ -78,6 +80,26 @@ void farbe(WORD color)
 	SetConsoleTextAttribute(::GetStdHandle(STD_OUTPUT_HANDLE), color);
 }
 
+void freiesParken(int etage, int parkplatz, int freieZeitInSekunden) {
+	static int al_ankunft[3][10] = { {0},{0},{0} };
+	time_t aktuelleZeit = time(NULL);
+
+	if (ab_parkhaus[etage][parkplatz]==0) {
+		al_ankunft[etage][parkplatz] = aktuelleZeit;
+	}
+	else {
+		if ((aktuelleZeit- al_ankunft[etage][parkplatz]) > freieZeitInSekunden) {
+			long zuBezahlendeZeit = ((aktuelleZeit - freieZeitInSekunden - al_ankunft[etage][parkplatz]) / 60) + 1;
+			farbe(ROT);
+			cout << "Zu zahlende Zeit: " << zuBezahlendeZeit << endl;
+			farbe(NORMAL);
+		}
+		else {
+			cout << "Freies Parken" << endl;
+		}
+		al_ankunft[etage][parkplatz] = 0;
+	}
+}
 
 void zeichneParkhaus(void)
 {
@@ -216,6 +238,7 @@ void einausfahrt(bool bfrei)
 
 			if (ab_parkhaus[i][j] == 0)
 			{
+				freiesParken(i, j, 10);
 				ab_parkhaus[i][j] = 1;
 			}
 			else
@@ -238,6 +261,7 @@ void einausfahrt(bool bfrei)
 
 			if (ab_parkhaus[i][j] == 1)
 			{
+				freiesParken(i, j, 10);
 				ab_parkhaus[i][j] = 0;
 			}
 			else
@@ -261,6 +285,7 @@ void einausfahrt(bool bfrei)
 			{
 				if (ab_parkhaus[i][j] == 1)
 				{
+					freiesParken(i, j, 10);
 					ab_parkhaus[i][j] = 0;
 				}
 				else
